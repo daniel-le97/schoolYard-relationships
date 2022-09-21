@@ -21,8 +21,9 @@ export class CoursesController {
   constructor() {
     appState.on('courses', draw)
     appState.on('myCourses', drawMyCourses)
-
+    appState.on('account', this.getMyCourses)
     this.getCourses()
+
   }
 
   async getCourses() {
