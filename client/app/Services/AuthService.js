@@ -2,6 +2,7 @@ import { appState } from '../AppState.js'
 import { audience, clientId, domain } from '../env.js'
 import { accountService } from './AccountService.js'
 import { server } from './AxiosService.js'
+import { coursesService } from './CoursesService.js'
 import { socketService } from './SocketService.js'
 
 // @ts-ignore
@@ -26,6 +27,13 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async () => {
   appState.user = AuthService.user
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
+  // TODO get stuff here
+
+  coursesService.getMyCourses()
+
+
+
+
 })
 
 async function refreshAuthToken(config) {

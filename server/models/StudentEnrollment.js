@@ -6,6 +6,7 @@ export const StudentEnrollmentSchema = new Schema({
 
   studentId: { type: ObjectId, ref: 'Account', required: true },
   courseId: { type: ObjectId, ref: 'Course', required: true },
+  status: { type: String, required: true, default: 'enrolled', enum: ['enrolled', 'dropped', 'failed', 'passed'] }
 
 }, {
   timestamps: true, toJSON: { virtuals: true }
