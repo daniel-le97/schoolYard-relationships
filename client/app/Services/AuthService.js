@@ -25,6 +25,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async () => {
   server.defaults.headers.authorization = AuthService.bearer
   server.interceptors.request.use(refreshAuthToken)
   appState.user = AuthService.user
+  // ANCHOR this prevents account from trying to load before auth has been authenticated
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
 })

@@ -5,47 +5,40 @@ import BaseController from "../utils/BaseController.js";
 
 export class CoursesController extends BaseController {
   constructor() {
-    super('api/courses')
+    super("api/courses");
     this.router
-      .get('', this.get)
-      .get('/:courseId/assignments', this.getCourseAssignments)
+      .get("", this.get)
+      .get("/:courseId/assignments", this.getCourseAssignments)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.create)
-
-
+      .post("", this.create);
   }
-
 
   async get(req, res, next) {
     try {
-      const courses = await coursesService.get()
-      res.send(courses)
+      const courses = await coursesService.get();
+      res.send(courses);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 
-  async getCourseAssignments(req, res, next){
+  async getCourseAssignments(req, res, next) {
     try {
-      const courseAssignments = await assignmentsService.getAssignmentsByCourseId(req.params.courseId)
-      res.send(courseAssignments)
+      const courseAssignments =
+        await assignmentsService.getAssignmentsByCourseId(req.params.courseId);
+      res.send(courseAssignments);
     } catch (error) {
-      next(error)
+      next(error);
     }
-
   }
-
-
 
   async create(req, res, next) {
     try {
       // req.body == form data
-      const course = await coursesService.create(req.body)
-      res.send(course)
+      const course = await coursesService.create(req.body);
+      res.send(course);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
-
-
 }
